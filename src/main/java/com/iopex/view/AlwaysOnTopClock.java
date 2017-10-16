@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.TimeZone;
 
 import javax.swing.JFrame;
@@ -17,9 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
-
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 
 /**
  * A clock to be shown always on top and not closeable from task bar
@@ -116,8 +114,8 @@ class ClockLabel extends JLabel implements ActionListener {
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent ae) {
-		DateTime dt = new DateTime(DateTimeZone.forTimeZone(TimeZone.getTimeZone("PST")));
-		setText(sdf.format(dt.toDate()));
+		sdf.setTimeZone(TimeZone.getTimeZone("PST"));
+		setText(sdf.format(new Date()));
 	}
 
 }
